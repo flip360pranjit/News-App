@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import News from "./components/Content/News";
+import Home from "./components/Home";
+import data from "./server/data";
 
 function App() {
+  const [currentDataIndex, setCurrentDataIndex] = useState(null);
+
+  function changeCurrentIndex(id) {
+    setCurrentDataIndex(id - 1);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route
+          exact
+          path="/"
+          element={<Home changeCurrentIndex={changeCurrentIndex} />}
+        />
+        <Route
+          exact
+          path="/news"
+          element={
+            <News
+              data={data[currentDataIndex]}
+              changeCurrentIndex={changeCurrentIndex}
+            />
+          }
+        />
+      </Routes>
+    </Router>
   );
 }
 
