@@ -7,10 +7,10 @@ function TrendingNewsBlock(props) {
 
   function handleClick() {
     setClicked(true);
+    props.changeCurrentIndex(props.currentData.id);
   }
   useEffect(() => {
     if (clicked) {
-      props.changeCurrentIndex(props.currentData.id);
       navigate("/news");
     }
   }, [clicked, navigate, props]);

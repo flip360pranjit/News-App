@@ -5,7 +5,7 @@ import Home from "./components/Home";
 import data from "./server/data";
 
 function App() {
-  const [currentDataIndex, setCurrentDataIndex] = useState(null);
+  const [currentDataIndex, setCurrentDataIndex] = useState(3);
 
   function changeCurrentIndex(id) {
     setCurrentDataIndex(id - 1);
